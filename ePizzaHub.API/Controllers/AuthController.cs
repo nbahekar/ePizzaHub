@@ -14,7 +14,7 @@ namespace ePizzaHub.API.Controllers
         {
             _authService=authService;
         }
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> ValidateUser(string username, string password)
         {
             var response =await  _authService.ValidateUserAsync(username, password);

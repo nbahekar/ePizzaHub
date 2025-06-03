@@ -31,19 +31,19 @@ namespace ePizzaHub.Core.Concrete
             {
                 throw new Exception("Invalid Password");
             }
-            List<string> lstRoles = new List<string>();
+            //List<string> lstRoles = new List<string>();
 
-            foreach (var role in userDetails.Roles)
-            {
-                lstRoles.Add(role.Name);
-            }
+            //foreach (var role in userDetails.Roles)
+            //{
+            //    lstRoles.Add(role.Name);
+            //}
             return new ValidateUserResponse()
             {
                 Email = userDetails.Email,
                 Name = userDetails.Name,
                 UserId = userDetails.Id,
 
-                Roles = lstRoles
+                Roles = userDetails.Roles.Select(x => x.Name).ToList()
             };
 
         }
