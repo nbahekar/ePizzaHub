@@ -27,16 +27,9 @@ namespace ePizzaHub.Repositories.Concrete
         public async Task<int> commitAsync()
         {
             return await _ePizzaHubContext.SaveChangesAsync();
-            
+
 
         }
-
-        //public async Task<T> DeleteAsync(T item)
-        //{
-        //    var item1 = await _ePizzaHubContext.Set<T>().FindAsync(item);
-        //     _ePizzaHubContext.Remove(item1);
-        //    return item1;
-        //}
 
         public IEnumerable<T> GetAll()
         {

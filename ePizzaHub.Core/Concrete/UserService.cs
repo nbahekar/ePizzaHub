@@ -32,19 +32,25 @@ namespace ePizzaHub.Core.Concrete
             //Hash password sending my end user
             var roleDetails = _roleRepository.GetAll().Where(x => x.Name == "User").FirstOrDefault();
 
-            if (roleDetails != null)
+            try
             {
-                var user=_imapper.Map<User>(createUserRequest);
-                user.Roles.Add(roleDetails);
-                user.Password=BCrypt.Net.BCrypt.HashPassword(user.Password);
+                if (roleDetails != null)
+                {
+                    var user = _imapper.Map<User>(createUserRequest);
+                    user.Roles.Add(roleDetails);
+                    user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-                await _userRepository.AddAsync(user);
+                    await _userRepository.AddAsync(user);
 
-                int rowsInserted = await _userRepository.commitAsync();
-                return rowsInserted > 0;
+                    int rowsInserted = await _userRepository.commitAsync();
+                    return rowsInserted > 0;
+
+                }
+            }
+            catch (Exception ex)
+            {
 
             }
-
             return false;
         }
     }

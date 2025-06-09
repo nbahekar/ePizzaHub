@@ -1,3 +1,4 @@
+using ePizzaHub.API;
 using ePizzaHub.Core.Concrete;
 using ePizzaHub.Core.Interface;
 using ePizzaHub.Infra.Models;
@@ -17,10 +18,14 @@ builder.Services.AddDbContext<ePizzaHubContext>(option => {
      option.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"));
     });
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<ICartService, CartService>();
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -38,6 +43,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<CommonResponseMiddleware>();
 
 app.MapControllers();
 
