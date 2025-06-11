@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ePizzaHub.Infra\ePizzaHub.Infra.csproj" />
+    <ProjectReference Include="..\ePizzaHub.Models\ePizzaHub.Models.csproj" />
   </ItemGroup>
 
 </Project>

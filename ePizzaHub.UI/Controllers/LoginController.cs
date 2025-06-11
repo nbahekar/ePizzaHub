@@ -1,4 +1,5 @@
-﻿using ePizzaHub.UI.Models.ApiModel.Request;
+﻿using ePizzaHub.UI.Helpers;
+using ePizzaHub.UI.Models.ApiModel.Request;
 using ePizzaHub.UI.Models.ApiModel.Response;
 using ePizzaHub.UI.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
@@ -14,7 +15,8 @@ namespace ePizzaHub.UI.Controllers
     {
 
         private readonly IHttpClientFactory _httpClientFactory;
-        public LoginController(IHttpClientFactory httpClientFactory) {
+        private readonly ITokenService _tokenService;
+        public LoginController(IHttpClientFactory httpClientFactory,ITokenService tokenService) {
 
             this._httpClientFactory=httpClientFactory;
         }

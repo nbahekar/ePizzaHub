@@ -10,6 +10,9 @@ namespace ePizzaHub.Repositories.Contract
     public interface ICartRepository:IGenericRepository<Cart>
     {
         public Task<int> GetCartItemCountAsync(Guid guid);
-        
+
+        public Task<Cart> GetCartDetailsAsync(Guid cartid);
+
+        Task<bool> DeleteItemAsync(Guid cartId, int itemId);
     }
 }

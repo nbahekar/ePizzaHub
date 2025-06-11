@@ -38,10 +38,10 @@ namespace ePizzaHub.Repositories.Concrete
             return query.ToList();
         }
 
-        //public Task<T> UpdateAsync(T item)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void UpdateAsync(T item)
+        {
+            _ePizzaHubContext.Set<T>().Update(item);
+        }
 
         //public Task<T> AddAsync(T item)
         //{

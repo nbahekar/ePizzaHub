@@ -12,9 +12,11 @@ namespace ePizzaHub.Repositories.Contract
 
         Task<T> AddAsync(T item);
 
-       // Task<T> UpdateAsync(T item);
+        // Task<T> UpdateAsync(T item);
 
         //Task<T> DeleteAsync(T item);
+
+        void UpdateAsync(T item);
 
         Task<int> commitAsync();
     }

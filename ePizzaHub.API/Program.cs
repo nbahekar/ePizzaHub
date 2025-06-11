@@ -2,6 +2,7 @@ using ePizzaHub.API;
 using ePizzaHub.Core.Concrete;
 using ePizzaHub.Core.Interface;
 using ePizzaHub.Infra.Models;
+using ePizzaHub.Models.ApiModels.common;
 using ePizzaHub.Repositories.Concrete;
 using ePizzaHub.Repositories.Contract;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<ePizzaHubContext>(option => {
      option.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"));
     });
+
+builder.Services.AddOptions<CartConfiguration>().BindConfiguration(nameof(CartConfiguration));
+
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IItemService, ItemService>();
