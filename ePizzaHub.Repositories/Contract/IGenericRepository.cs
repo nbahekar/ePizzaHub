@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,5 +20,7 @@ namespace ePizzaHub.Repositories.Contract
         void UpdateAsync(T item);
 
         Task<int> commitAsync();
+
+        Task<IEnumerable<T>> GetAllAync(Expression<Func<T, bool>> filter = null);
     }
 }

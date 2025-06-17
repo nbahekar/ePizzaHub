@@ -4,6 +4,7 @@ using ePizzaHub.Infra.Models;
 using ePizzaHub.Models.ApiModels.common;
 using ePizzaHub.Models.ApiModels.Request;
 using ePizzaHub.Models.ApiModels.Response;
+using ePizzaHub.Repositories.Concrete;
 using ePizzaHub.Repositories.Contract;
 using Microsoft.Extensions.Options;
 using System;
@@ -109,6 +110,27 @@ namespace ePizzaHub.Core.Concrete
                 throw new Exception("Item doesn't found in Cart");
             }
             return isDeleted;
+        }
+
+        public async Task<bool> UpdateItemInCartAsync(Guid CardId, int ItemId, int Quantity)
+        {
+            var cartExists = await _repository.GetAllAync(x => x.Id == CardId);
+            if (!cartExists.Any())
+            {
+                throw new Exception($"cart id {CardId} does not exist");
+            }
+            int itemAdded = await _repository.UpdateItemQuantity(CardId, ItemId, Quantity);
+            return itemAdded > 0;
+        }
+
+        public async Task<int> UpdateCartUser(Guid cartId, int userId)
+        {
+            var cartDetails = await _repository.GetCartDetailAsync(cartId, true);
+            if (cartDetails == null)
+                throw new Exception("Cart Doesn't exist");
+            cartDetails.UserId = userId;
+
+            return await _repository.commitAsync();
         }
     }
 }

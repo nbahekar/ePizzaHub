@@ -18,5 +18,9 @@ namespace ePizzaHub.Core.Interface
          Task<bool> AddtToCartAsync(AddToCartRequestModel addToCartRequestModel);
 
          Task<bool> DeleteItemCart(Guid CartId,int ItemId);
+
+        Task<bool> UpdateItemInCartAsync(Guid CardId, int ItemId, int Quantity);
+
+        Task<int> UpdateCartUser(Guid cartId, int userId);
     }
 }

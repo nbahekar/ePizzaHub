@@ -14,5 +14,9 @@ namespace ePizzaHub.Repositories.Contract
         public Task<Cart> GetCartDetailsAsync(Guid cartid);
 
         Task<bool> DeleteItemAsync(Guid cartId, int itemId);
+
+        Task<int> UpdateItemQuantity(Guid cartId, int ItemId, int quantity);
+
+        Task<Cart> GetCartDetailAsync(Guid cartId, bool persistChanges = false);
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,6 +42,18 @@ namespace ePizzaHub.Repositories.Concrete
         public void UpdateAsync(T item)
         {
             _ePizzaHubContext.Set<T>().Update(item);
+        }
+
+        public async Task<IEnumerable<T>> GetAllAync(Expression<Func<T, bool>> filter=null)
+        {
+            IQueryable<T> query = _ePizzaHubContext.Set<T>();
+            if (filter!=null)
+            {
+                query = query.Where(filter);
+            }
+
+            return await query.ToListAsync();
+
         }
 
         //public Task<T> AddAsync(T item)

@@ -18,5 +18,7 @@ namespace ePizzaHub.Models.ApiModels.Response
 
         public string ImageUrl { get; set; }
 
+        public int Quantity { get; set; }
+
     }
 }

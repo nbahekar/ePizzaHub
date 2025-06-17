@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ePizzaHub.Core.Interface
 {
-    public interface IAuthService
+    public interface ITokenGeneratorService
     {
-        Task<UserResponse> ValidateUserAsync(string username, string password);
+        string GenerateToken(UserResponse userResponse);
     }
 }

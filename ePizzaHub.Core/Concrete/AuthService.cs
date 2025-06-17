@@ -16,7 +16,7 @@ namespace ePizzaHub.Core.Concrete
 
             _userRepository = userRepository;
         }
-        public async Task<ValidateUserResponse> ValidateUserAsync(string username, string password)
+        public async Task<UserResponse> ValidateUserAsync(string username, string password)
         {
             var userDetails = await _userRepository.FindByUserNameAsync(username);
 
@@ -37,7 +37,7 @@ namespace ePizzaHub.Core.Concrete
             //{
             //    lstRoles.Add(role.Name);
             //}
-            return new ValidateUserResponse()
+            return new UserResponse()
             {
                 Email = userDetails.Email,
                 Name = userDetails.Name,

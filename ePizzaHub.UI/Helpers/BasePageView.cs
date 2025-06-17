@@ -1,10 +1,10 @@
 ﻿using ePizzaHub.UI.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using System.Security.Claims;
 
-namespace ePizzaHub.UI.Controllers
+namespace ePizzaHub.UI.Helpers
 {
-    public class BaseController : Controller
+    public abstract class BasePageView<TModel> : RazorPage<TModel>
     {
         public UserViewModel CurrentUser
         {
@@ -28,6 +28,5 @@ namespace ePizzaHub.UI.Controllers
 
             }
         }
-
     }
 }

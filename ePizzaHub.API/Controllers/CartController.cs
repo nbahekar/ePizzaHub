@@ -18,9 +18,9 @@ namespace ePizzaHub.API.Controllers
         }
         [HttpGet]
         [Route("get-item-count")]
-        public async Task<IActionResult> GetCartItemCount(Guid guid)
+        public async Task<IActionResult> GetCartItemCount(Guid cartId)
         {
-            var itemCount=await _cartService.GetCartItemCountAsync(guid);
+            var itemCount=await _cartService.GetCartItemCountAsync(cartId);
             return Ok(itemCount);
         }
 
@@ -52,7 +52,22 @@ namespace ePizzaHub.API.Controllers
             return Ok(deleted);
         }
 
+        [HttpPut]
+        [Route("update-item")]
+        public async Task<IActionResult> UpdateItem(UpdateCartItemRequest updateCartItemRequest)
+        {
+            var cartDetails=await _cartService.UpdateItemInCartAsync(updateCartItemRequest.CardId, updateCartItemRequest.ItemId,updateCartItemRequest.Quantity);
+            return Ok(cartDetails);
+        }
 
+        [HttpPut]
+        [Authorize]
+        [Route("update-cart-user")]
+        public async Task<IActionResult> UpdateCartUser(UpdateCartUserRequestModel updateCartUserRequest)
+        {
+            var deleted = await _cartService.UpdateCartUser(updateCartUserRequest.CartId, updateCartUserRequest.UserId);
+            return Ok(deleted);
+        }
 
         //[HttpPut]
         //[Route("update-item")]
