@@ -6,7 +6,7 @@
         private readonly IHttpContextAccessor _httpContextAccessor;
         public TokenService(IHttpContextAccessor httpContextAccessor) {
 
-            _httpContextAccessor = httpContextAccessor;
+            this._httpContextAccessor = httpContextAccessor;
         }
         public string GetToken()
         {
@@ -24,10 +24,11 @@
                 _httpContextAccessor.HttpContext.Response.Cookies.Append("AccessToken", token,
                     new CookieOptions
                     {
-                        Expires = DateTimeOffset.UtcNow,
                         HttpOnly = true,
                         Secure = true,
-                        SameSite=SameSiteMode.Strict
+                        SameSite = SameSiteMode.None,
+                        Expires = DateTime.UtcNow.AddHours(1)
+
                     });
             }
         }
